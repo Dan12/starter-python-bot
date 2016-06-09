@@ -42,7 +42,7 @@ class RtmEventHandler(object):
             logger.info("MSG text:" + msg_txt)
             
             r = requests.post("http://learn-node-dan121.c9users.io/", data={'number': 12524, 'type': 'issue', 'action': 'show'})
-            logger.info("return: " + r.status_code+" , "+r.reason+" , "+r.text + '...')
+            logger.info("return: " + str(r.status_code)+" , "+r.reason+" , "+r.text + '...')
 
             if self.clients.is_bot_mention(msg_txt):
                 # e.g. user typed: "@pybot tell me a joke!"
