@@ -22,6 +22,7 @@ class RtmEventHandler(object):
             self.msg_writer.write_error(event['channel'], json.dumps(event))
         elif event_type == 'message':
             # message was sent to channel
+            logger.info("There was a message");
             self._handle_message(event)
         elif event_type == 'channel_joined':
             # you joined a channel
@@ -37,6 +38,7 @@ class RtmEventHandler(object):
         if not self.clients.is_message_from_me(event['user']):
 
             msg_txt = event['text']
+            logger.info("MSG text:" + msg_txt)
 
             if self.clients.is_bot_mention(msg_txt):
                 # e.g. user typed: "@pybot tell me a joke!"
