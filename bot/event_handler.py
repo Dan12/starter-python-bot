@@ -44,8 +44,12 @@ class RtmEventHandler(object):
             fileOpen = os.path.isfile("messagefile") 
             logger.info("Is file open?: "+str(fileOpen))
             
+            if fileOpen:
+                fOp = open("messagefile","r")
+                logger.info("Last message: "+fOp.readline());
+            
             file = open('messagefile', 'w+')
-            file.write("Test message");
+            file.write("Message text: "+msg_txt)
             file.close()
 
             if self.clients.is_bot_mention(msg_txt):
