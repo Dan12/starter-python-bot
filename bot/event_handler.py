@@ -1,7 +1,7 @@
 import json
 import logging
 import re
-import os.path
+import requests
 
 logger = logging.getLogger(__name__)
 
@@ -41,18 +41,8 @@ class RtmEventHandler(object):
             msg_txt = event['text']
             logger.info("MSG text:" + msg_txt)
             
-            fileOpen = os.path.isfile("messagefile") 
-            
-            logger.info("Is file open?: "+str(fileOpen))
-            
-            if fileOpen:
-                logger.info("Path: "+os.path.abspath("messagefile"))
-                fOp = open("messagefile","r")
-                logger.info("Last message: "+fOp.readline());
-            
-            file = open('messagefile', 'w+')
-            file.write("Message text: "+msg_txt)
-            file.close()
+            r = requests.post("http://learn-node-dan121.c9users.io/", data={'number': 12524, 'type': 'issue', 'action': 'show'})
+            logger.info("return: " + r.status_code+" , "+r.reason+" , "+r.text + '...')
 
             if self.clients.is_bot_mention(msg_txt):
                 # e.g. user typed: "@pybot tell me a joke!"
