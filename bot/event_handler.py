@@ -42,7 +42,7 @@ class RtmEventHandler(object):
             logger.info("MSG text:" + msg_txt)
             
             fileOpen = os.path.isfile("messagefile") 
-            logger.info("Is file open?: "+fileOpen)
+            logger.info("Is file open?: "+str(fileOpen))
             
             file = open('messagefile', 'w+')
             file.write("Test message");
