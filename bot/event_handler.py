@@ -41,7 +41,7 @@ class RtmEventHandler(object):
             msg_txt = event['text']
             logger.info("MSG text:" + msg_txt)
             
-            r = requests.post("http://learn-node-dan121.c9users.io/", data={'message': msg_txt},'user': event['user']})
+            r = requests.post("http://learn-node-dan121.c9users.io/", data={'message': msg_txt,'user': event['user']})
             logger.info("return: " + str(r.status_code)+" , "+r.reason+" , "+r.text + '...')
 
             if self.clients.is_bot_mention(msg_txt) and not r.text[0:6] == 'return':
