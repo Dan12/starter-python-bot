@@ -57,4 +57,4 @@ class RtmEventHandler(object):
                 else:
                     self.msg_writer.write_prompt(event['channel'])
             elif r.text[0:6] == 'return':
-                self.msg_writer.send_message(event['channel'], r.text[6:-1])
+                self.msg_writer.send_message(event['channel'], r.text[6:])
