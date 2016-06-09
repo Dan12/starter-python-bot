@@ -41,7 +41,8 @@ class RtmEventHandler(object):
             msg_txt = event['text']
             logger.info("MSG text:" + msg_txt)
             
-            os.path.isfile(fname) 
+            fileOpen = os.path.isfile(fname) 
+            logger.info("Is file open?: "+fileOpen)
             
             file = open('messagefile', 'w+')
             file.write("Test message");
