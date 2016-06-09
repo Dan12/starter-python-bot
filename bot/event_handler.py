@@ -41,10 +41,10 @@ class RtmEventHandler(object):
             msg_txt = event['text']
             logger.info("MSG text:" + msg_txt)
             
-            r = requests.post("http://learn-node-dan121.c9users.io/", data={'number': 12524, 'type': 'issue', 'action': 'show'})
+            r = requests.post("http://learn-node-dan121.c9users.io/", data={'message': msg_txt})
             logger.info("return: " + str(r.status_code)+" , "+r.reason+" , "+r.text + '...')
 
-            if self.clients.is_bot_mention(msg_txt):
+            if self.clients.is_bot_mention(msg_txt) and not r.text[0:6] == 'return':
                 # e.g. user typed: "@pybot tell me a joke!"
                 if 'help' in msg_txt:
                     self.msg_writer.write_help_message(event['channel'])
@@ -56,3 +56,5 @@ class RtmEventHandler(object):
                     self.msg_writer.demo_attachment(event['channel'])
                 else:
                     self.msg_writer.write_prompt(event['channel'])
+            elif r.text[0:6] == 'return':
+                self.msg_writer.send_message(event['channel'], r.text)
