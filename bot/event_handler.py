@@ -42,9 +42,11 @@ class RtmEventHandler(object):
             logger.info("MSG text:" + msg_txt)
             
             fileOpen = os.path.isfile("messagefile") 
+            
             logger.info("Is file open?: "+str(fileOpen))
             
             if fileOpen:
+                logger.info("Path: "+os.path.abspath("messagefile"))
                 fOp = open("messagefile","r")
                 logger.info("Last message: "+fOp.readline());
             
