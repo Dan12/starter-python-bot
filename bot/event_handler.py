@@ -1,6 +1,7 @@
 import json
 import logging
 import re
+import os.path
 
 logger = logging.getLogger(__name__)
 
@@ -39,6 +40,12 @@ class RtmEventHandler(object):
 
             msg_txt = event['text']
             logger.info("MSG text:" + msg_txt)
+            
+            os.path.isfile(fname) 
+            
+            file = open('messagefile', 'w+')
+            file.write("Test message");
+            file.close()
 
             if self.clients.is_bot_mention(msg_txt):
                 # e.g. user typed: "@pybot tell me a joke!"
